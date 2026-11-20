@@ -8,7 +8,6 @@
   <meta name="theme-color" content="#14000a" />
   <meta property="og:title" content="Sebastián Araque — CV" />
   <meta property="og:description" content="Software architect · Founder @ Pitly · Electronics · Game Design" />
-  <meta property="og:image" content="assets/images/sebas-duo.webp" />
   <link rel="icon" href="assets/images/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -98,11 +97,70 @@
     <div class="eye"><div class="eye__iris" id="iris"></div></div>
   </div>
 
-  <!-- Portrait with "reality lens" -->
+  <!-- Melting retro computer (replaces the portrait) -->
   <div class="hero__portrait" id="portrait" data-depth="0.25">
-    <img class="p-layer p-layer--ghost" src="assets/images/sebas-duo.webp" alt="" aria-hidden="true" />
-    <img class="p-layer p-layer--duo" src="assets/images/sebas-duo.webp" alt="Sebastián Araque" />
-    <img class="p-layer p-layer--real" id="realLayer" src="assets/images/sebas-cut.webp" alt="" aria-hidden="true" />
+    <svg class="crt" viewBox="0 0 600 600" role="img" aria-label="Computador retro derritiéndose con una terminal encendida">
+      <defs>
+        <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ffe9df"/><stop offset=".55" stop-color="#ffb3bd"/><stop offset="1" stop-color="#c8102e"/>
+        </linearGradient>
+        <linearGradient id="neck" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7a0a22"/><stop offset="1" stop-color="#2a0012"/>
+        </linearGradient>
+        <radialGradient id="scr" cx=".5" cy=".45" r=".75">
+          <stop offset="0" stop-color="#5a0018"/><stop offset=".7" stop-color="#220010"/><stop offset="1" stop-color="#0c0006"/>
+        </radialGradient>
+        <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="2" fill="#000"/></pattern>
+        <clipPath id="scrClip"><rect x="140" y="120" width="320" height="228" rx="18"/></clipPath>
+      </defs>
+      <!-- stand -->
+      <ellipse cx="300" cy="500" rx="150" ry="16" fill="#000" opacity=".35"/>
+      <path d="M250 410 L350 410 L376 492 L224 492 Z" fill="url(#neck)"/>
+      <!-- melting body -->
+      <path class="crt__body" fill="url(#body)" d="M120 70 H480 Q512 70 512 102 V396 Q512 424 484 424 H452 C444 424 444 436 444 450 C444 470 432 478 424 466 C418 456 420 436 410 430 H352 C342 430 340 446 340 470 C340 520 326 540 316 528 C306 516 312 470 300 440 C296 430 288 428 280 428 H210 C198 428 196 440 196 456 C196 486 182 494 176 482 C170 470 176 440 160 428 H118 Q88 424 88 396 V102 Q88 70 120 70 Z"/>
+      <g stroke="#c8102e" stroke-opacity=".35" stroke-width="3" stroke-linecap="round">
+        <line x1="488" y1="150" x2="488" y2="200"/><line x1="496" y1="150" x2="496" y2="200"/><line x1="504" y1="150" x2="504" y2="200"/>
+      </g>
+      <!-- bezel + screen -->
+      <rect x="124" y="104" width="352" height="260" rx="26" fill="#1b0610"/>
+      <g clip-path="url(#scrClip)">
+        <rect x="140" y="120" width="320" height="228" fill="url(#scr)"/>
+        <g id="term" font-family="JetBrains Mono, monospace" font-size="15" fill="#ffd6dc">
+          <text x="162" y="156"></text><text x="162" y="182"></text><text x="162" y="208"></text>
+          <text x="162" y="234"></text><text x="162" y="260"></text><text x="162" y="286"></text>
+          <text x="162" y="312"></text>
+        </g>
+        <rect class="crt__scan" x="140" y="120" width="320" height="228" fill="url(#scan)" opacity=".28"/>
+        <rect class="crt__roll" x="140" y="120" width="320" height="40" fill="#ff2d4a" opacity=".07"/>
+        <ellipse cx="220" cy="150" rx="130" ry="50" fill="#fff" opacity=".05"/>
+      </g>
+      <text x="140" y="392" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="3" fill="#7a0a22">ARQ·2026</text>
+      <circle class="crt__led" cx="452" cy="388" r="5" fill="#ff2d4a"/>
+      <!-- floating keyboard -->
+      <g class="crt__kbd">
+        <path d="M120 528 L480 528 L520 578 L80 578 Z" fill="url(#body)"/>
+        <path d="M80 578 L520 578 L520 588 L80 588 Z" fill="#7a0a22"/>
+        <g fill="#2a0012" opacity=".75">
+          <rect x="138" y="536" width="22" height="9" rx="2"/><rect x="166" y="536" width="22" height="9" rx="2"/><rect x="194" y="536" width="22" height="9" rx="2"/><rect x="222" y="536" width="22" height="9" rx="2"/><rect x="250" y="536" width="22" height="9" rx="2"/><rect x="278" y="536" width="22" height="9" rx="2"/><rect x="306" y="536" width="22" height="9" rx="2"/><rect x="334" y="536" width="22" height="9" rx="2"/><rect x="362" y="536" width="22" height="9" rx="2"/><rect x="390" y="536" width="22" height="9" rx="2"/><rect x="418" y="536" width="44" height="9" rx="2"/>
+          <rect x="124" y="550" width="26" height="10" rx="2"/><rect x="156" y="550" width="26" height="10" rx="2"/><rect x="188" y="550" width="26" height="10" rx="2"/><rect x="220" y="550" width="26" height="10" rx="2"/><rect x="252" y="550" width="26" height="10" rx="2"/><rect x="284" y="550" width="26" height="10" rx="2"/><rect x="316" y="550" width="26" height="10" rx="2"/><rect x="348" y="550" width="26" height="10" rx="2"/><rect x="380" y="550" width="26" height="10" rx="2"/><rect x="412" y="550" width="62" height="10" rx="2"/>
+          <rect x="190" y="565" width="220" height="9" rx="2"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <!-- floating game bits -->
+  <div class="float float--pad" data-depth="0.8" aria-hidden="true">
+    <svg viewBox="0 0 200 120">
+      <path d="M52 18 H148 C178 18 196 46 198 78 C200 106 182 118 166 110 C152 103 146 86 132 82 H68 C54 86 48 103 34 110 C18 118 0 106 2 78 C4 46 22 18 52 18 Z" fill="#ffe3d6"/>
+      <path d="M52 18 H148 C178 18 196 46 198 78 C199 92 194 103 186 108 C190 80 172 40 140 34 H60 C28 40 10 80 14 108 C6 103 1 92 2 78 C4 46 22 18 52 18 Z" fill="#fff" opacity=".5"/>
+      <g fill="#2a0012"><rect x="38" y="50" width="12" height="36" rx="3"/><rect x="26" y="62" width="36" height="12" rx="3"/></g>
+      <circle cx="150" cy="52" r="7" fill="#ff2d4a"/><circle cx="166" cy="66" r="7" fill="#c8102e"/><circle cx="134" cy="66" r="7" fill="#c8102e"/><circle cx="150" cy="80" r="7" fill="#ff2d4a"/>
+      <circle cx="80" cy="84" r="11" fill="#2a0012"/><circle cx="120" cy="84" r="11" fill="#2a0012"/>
+    </svg>
+  </div>
+  <div class="keys" data-depth="0.5" aria-hidden="true">
+    <span class="key key--w">W</span><span class="key key--a">A</span><span class="key key--s">S</span><span class="key key--d">D</span>
   </div>
 
   <div class="hero__name-outline" aria-hidden="true" data-depth="0.15">ARAQUE</div>
@@ -124,7 +182,7 @@
     </p>
 
     <div class="mini-card tilt">
-      <div class="mini-card__img"><img src="assets/images/sebas-duo.webp" alt="" /></div>
+      <div class="mini-card__img mini-card__img--term" aria-hidden="true"><span>&gt;_</span></div>
       <div class="mini-card__body">
         <strong>Sebastián Araque</strong>
         <small><span class="es">FREELANCE · DISPONIBLE PARA PROYECTOS</span><span class="en">FREELANCE · OPEN FOR PROJECTS</span></small>

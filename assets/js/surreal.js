@@ -59,8 +59,6 @@
   };
   readDepth(); addEventListener('resize', readDepth);
   const iris = $('#iris');
-  const portrait = $('#portrait');
-  const real = $('#realLayer');
 
   if (finePointer && !reduce) {
     hero.addEventListener('mousemove', (e) => {
@@ -76,16 +74,37 @@
       const er = iris.parentElement.getBoundingClientRect();
       const ang = Math.atan2(e.clientY - (er.top + er.height / 2), e.clientX - (er.left + er.width / 2));
       iris.style.transform = `translate(${Math.cos(ang) * 9}px, ${Math.sin(ang) * 5}px)`;
-      // lens reveals the "real" layer under the dream
-      const pr = portrait.getBoundingClientRect();
-      const lx = e.clientX - pr.left, ly = e.clientY - pr.top;
-      const inside = lx > 0 && ly > 0 && lx < pr.width && ly < pr.height;
-      portrait.classList.toggle('lens', inside);
-      real.style.setProperty('--lx', lx + 'px');
-      real.style.setProperty('--ly', ly + 'px');
     });
-    hero.addEventListener('mouseleave', () => portrait.classList.remove('lens'));
   }
+
+  /* ---------- terminal typing on the CRT ---------- */
+  const termLines = $$('#term text');
+  const script = {
+    es: ['> whoami', 'sebastian.araque', '> stack --top', 'angular · spring · esp32', '> run sueño.exe', 'cargando realidad…', '> '],
+    en: ['> whoami', 'sebastian.araque', '> stack --top', 'angular · spring · esp32', '> run dream.exe', 'loading reality…', '> ']
+  };
+  let typing = 0;
+  const typeTerm = () => {
+    const run = ++typing;
+    const lines = script[lang];
+    termLines.forEach((t) => (t.textContent = ''));
+    let li = 0, ci = 0;
+    const step = () => {
+      if (run !== typing) return;
+      if (li >= lines.length) {
+        const last = termLines[lines.length - 1];
+        last.innerHTML = '&gt; <tspan class="term-cursor">█</tspan>';
+        setTimeout(() => run === typing && typeTerm(), 6000);
+        return;
+      }
+      termLines[li].textContent = lines[li].slice(0, ++ci);
+      if (ci >= lines[li].length) { li++; ci = 0; setTimeout(step, reduce ? 0 : 380); }
+      else setTimeout(step, reduce ? 0 : 45 + Math.random() * 60);
+    };
+    step();
+  };
+  typeTerm();
+  $('#langBtn').addEventListener('click', typeTerm);
 
   /* ---------- star / crosshair field ---------- */
   const cv = $('#stars'), ctx = cv.getContext('2d');
