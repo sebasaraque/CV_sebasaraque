@@ -124,7 +124,7 @@
     for (const s of stars) {
       s.y -= s.v; if (s.y < -10) { s.y = H + 10; s.x = Math.random() * W; }
       const a = 0.25 + 0.35 * Math.sin(t / 900 + s.p);
-      ctx.strokeStyle = ctx.fillStyle = `rgba(255,227,214,${a})`;
+      ctx.strokeStyle = ctx.fillStyle = `rgba(227,238,255,${a})`;
       if (s.cross) {
         ctx.lineWidth = dpr * 0.8;
         ctx.beginPath();
