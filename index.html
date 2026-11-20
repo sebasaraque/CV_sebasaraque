@@ -1,861 +1,446 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Sebastian Araque</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="description"
-      content="Sebastian Araque cv/resume and personal website."
-    />
-    <meta
-      name="keywords"
-      content="Professional web developer with 3+ years of experience"
-    />
-    <meta name="developer" content="Sebastian araque prieto" />
-    <meta name="web developer" content="web developer based on Colombia" />
-    <meta name="web designer" content="web designer Remote work" />
-    <meta name="knowledge" content="JavaScript, HTML, CSS, Vue.js" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sebastián Araque — Software Architect · Electronics · Game Design</title>
+  <meta name="description" content="Sebastián Araque Prieto — Software architect, founder de Pitly, estudiante de Ingeniería Electrónica y Game Designer. Tunja, Colombia." />
+  <meta name="theme-color" content="#030a18" />
+  <meta property="og:title" content="Sebastián Araque — CV" />
+  <meta property="og:description" content="Software architect · Founder @ Pitly · Electronics · Game Design" />
+  <link rel="icon" href="assets/images/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/surreal.css" />
+</head>
+<body>
 
-    <!-- FAV AND ICONS   -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
-    <link rel="shortcut icon" href="assets/images/apple-icon.png" />
-    <link
-      rel="shortcut icon"
-      sizes="72x72"
-      href="assets/images/apple-icon-72x72.png"
-    />
-    <link
-      rel="shortcut icon"
-      sizes="114x114"
-      href="assets/images/apple-icon-114x114.png"
-    />
+<!-- SVG filters: the "melting reality" effect -->
+<svg class="defs" aria-hidden="true">
+  <filter id="melt" x="-10%" y="-10%" width="120%" height="140%">
+    <feTurbulence id="meltNoise" type="fractalNoise" baseFrequency="0.004 0.012" numOctaves="1" seed="7" result="n" />
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="10" xChannelSelector="R" yChannelSelector="G" />
+  </filter>
+  <filter id="warp">
+    <feTurbulence id="warpNoise" type="turbulence" baseFrequency="0.02" numOctaves="2" seed="3" result="n" />
+    <feDisplacementMap id="warpMap" in="SourceGraphic" in2="n" scale="0" xChannelSelector="R" yChannelSelector="B" />
+  </filter>
+  <filter id="grain">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch" />
+    <feColorMatrix type="saturate" values="0" />
+  </filter>
+</svg>
 
-    <!-- Google Font-->
-    <link
-      href="http://fonts.googleapis.com/css?family=Roboto"
-      rel="stylesheet"
-    />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="assets/icons/font-awesome-4.7.0/css/font-awesome.min.css"
-    />
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/plugins/css/bootstrap.min.css" />
-    <!-- Animate CSS-->
-    <link rel="stylesheet" href="assets/plugins/css/animate.css" />
-    <!-- Owl Carousel CSS-->
-    <link rel="stylesheet" href="assets/plugins/css/owl.css" />
-    <!-- Fancybox-->
-    <link rel="stylesheet" href="assets/plugins/css/jquery.fancybox.min.css" />
-    <!-- Custom CSS-->
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <link rel="stylesheet" href="assets/css/responsive.css" />
+<!-- Loader -->
+<div class="loader" id="loader">
+  <div class="loader__count"><span id="loaderNum">00</span>%</div>
+  <p class="loader__txt"><span class="es">despertando dentro del sueño…</span><span class="en">waking up inside the dream…</span></p>
+</div>
 
-    <!-- Colors -->
-    <link
-      rel="alternate stylesheet"
-      href="assets/css/colors/blue.css"
-      title="blue"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/colors/defauld.css"
-      title="default"
-    />
-    <link
-      rel="alternate stylesheet"
-      href="assets/css/colors/green.css"
-      title="green"
-    />
-    <link
-      rel="alternate stylesheet"
-      href="assets/css/colors/blue-munsell.css"
-      title="blue-munsell"
-    />
-    <link
-      rel="alternate stylesheet"
-      href="assets/css/colors/orange.css"
-      title="orange"
-    />
-    <link
-      rel="alternate stylesheet"
-      href="assets/css/colors/purple.css"
-      title="purple"
-    />
-    <link
-      rel="alternate stylesheet"
-      href="assets/css/colors/slate.css"
-      title="slate"
-    />
-    <link
-      rel="alternate stylesheet"
-      href="assets/css/colors/yellow.css"
-      title="yellow"
-    />
-  </head>
-  <body class="dark-vertion black-bg">
-    <!-- Start Loader -->
-    <div class="section-loader">
-      <div class="loader">
-        <div></div>
-        <div></div>
+<div class="cursor" id="cursor"></div>
+<div class="grain"></div>
+<canvas id="stars" class="stars"></canvas>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="Inicio">
+    <span class="logo__mark"><i></i><i></i></span>
+    <span class="logo__txt">ARAQUE</span>
+  </a>
+  <nav class="nav__links">
+    <a href="#about"><span class="es">Sobre mí</span><span class="en">About</span></a>
+    <a href="#work"><span class="es">Experiencia</span><span class="en">Work</span></a>
+    <a href="#lab">Lab</a>
+    <a href="#skills">Skills</a>
+  </nav>
+  <div class="nav__right">
+    <button class="lang" id="langBtn" aria-label="Cambiar idioma"><b data-l="es">ES</b><span>/</span><b data-l="en">EN</b></button>
+    <a href="#contact" class="btn btn--white"><span class="es">Contacto</span><span class="en">Contact</span></a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero__glow"></div>
+  <div class="hero__grid"></div>
+
+  <h1 class="hero__name" data-depth="0.15">
+    <span class="hero__name-fill">ARAQUE</span>
+  </h1>
+
+  <!-- Floating surreal objects -->
+  <div class="float float--clock" data-depth="0.6" aria-hidden="true">
+    <svg viewBox="0 0 220 200">
+      <defs>
+        <linearGradient id="clk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3eeff"/><stop offset="1" stop-color="#5b8fff"/></linearGradient>
+      </defs>
+      <path d="M20 60 C 20 18, 120 0, 170 30 C 205 52, 210 80, 198 98 C 186 118, 150 110, 140 128 C 132 142, 150 168, 136 186 C 124 200, 104 196, 104 176 C 104 150, 96 130, 70 124 C 40 118, 20 100, 20 60 Z" fill="url(#clk)" />
+      <path d="M32 62 C 34 30, 118 14, 160 38 C 190 56, 194 80, 184 92 C 172 106, 140 100, 128 118 C 120 132, 136 160, 124 176 C 118 184, 114 180, 114 170 C 114 146, 104 122, 74 114 C 46 108, 30 92, 32 62 Z" fill="#030a18" opacity=".88"/>
+      <g stroke="#e3eeff" stroke-width="3" stroke-linecap="round">
+        <line x1="100" y1="64" x2="100" y2="38"/><line x1="100" y1="64" x2="138" y2="80"/>
+      </g>
+      <circle cx="100" cy="64" r="4" fill="#3d7bff"/>
+      <g fill="#e3eeff" font-family="JetBrains Mono" font-size="9">
+        <text x="94" y="32">12</text><text x="166" y="66">3</text><text x="44" y="70">9</text><text x="116" y="168">6</text>
+      </g>
+    </svg>
+  </div>
+  <div class="float float--orb" data-depth="0.9" aria-hidden="true"></div>
+  <div class="float float--ring" data-depth="0.35" aria-hidden="true"></div>
+  <div class="float float--chip" data-depth="0.75" aria-hidden="true">
+    <svg viewBox="0 0 120 80"><rect x="18" y="10" width="84" height="60" rx="6" fill="#050b1c" stroke="#3d7bff" stroke-width="2"/><rect x="40" y="24" width="40" height="32" rx="3" fill="#3d7bff" opacity=".25" stroke="#9cc0ff"/><text x="44" y="44" font-family="JetBrains Mono" font-size="9" fill="#e3eeff">ESP32</text><g stroke="#9cc0ff" stroke-width="2"><path d="M26 10V2M38 10V2M50 10V2M62 10V2M74 10V2M86 10V2M98 10V2M26 70v8M38 70v8M50 70v8M62 70v8M74 70v8M86 70v8M98 70v8"/></g></svg>
+  </div>
+  <div class="float float--eye" data-depth="1.1" aria-hidden="true">
+    <div class="eye"><div class="eye__iris" id="iris"></div></div>
+  </div>
+
+  <!-- Melting retro computer (replaces the portrait) -->
+  <div class="hero__portrait" id="portrait" data-depth="0.25">
+    <svg class="crt" viewBox="0 0 600 600" role="img" aria-label="Computador retro derritiéndose con una terminal encendida">
+      <defs>
+        <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#eef4ff"/><stop offset=".55" stop-color="#a9c6ff"/><stop offset="1" stop-color="#1c4fb0"/>
+        </linearGradient>
+        <linearGradient id="neck" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0f2f72"/><stop offset="1" stop-color="#061433"/>
+        </linearGradient>
+        <radialGradient id="scr" cx=".5" cy=".45" r=".75">
+          <stop offset="0" stop-color="#0c2b68"/><stop offset=".7" stop-color="#050f28"/><stop offset="1" stop-color="#02060f"/>
+        </radialGradient>
+        <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="2" fill="#000"/></pattern>
+        <clipPath id="scrClip"><rect x="140" y="120" width="320" height="228" rx="18"/></clipPath>
+      </defs>
+      <!-- stand -->
+      <ellipse cx="300" cy="500" rx="150" ry="16" fill="#000" opacity=".35"/>
+      <path d="M250 410 L350 410 L376 492 L224 492 Z" fill="url(#neck)"/>
+      <!-- melting body -->
+      <path class="crt__body" fill="url(#body)" d="M120 70 H480 Q512 70 512 102 V396 Q512 424 484 424 H452 C444 424 444 436 444 450 C444 470 432 478 424 466 C418 456 420 436 410 430 H352 C342 430 340 446 340 470 C340 520 326 540 316 528 C306 516 312 470 300 440 C296 430 288 428 280 428 H210 C198 428 196 440 196 456 C196 486 182 494 176 482 C170 470 176 440 160 428 H118 Q88 424 88 396 V102 Q88 70 120 70 Z"/>
+      <g stroke="#1c4fb0" stroke-opacity=".35" stroke-width="3" stroke-linecap="round">
+        <line x1="488" y1="150" x2="488" y2="200"/><line x1="496" y1="150" x2="496" y2="200"/><line x1="504" y1="150" x2="504" y2="200"/>
+      </g>
+      <!-- bezel + screen -->
+      <rect x="124" y="104" width="352" height="260" rx="26" fill="#050b1c"/>
+      <g clip-path="url(#scrClip)">
+        <rect x="140" y="120" width="320" height="228" fill="url(#scr)"/>
+        <g id="term" font-family="JetBrains Mono, monospace" font-size="15" fill="#d6e5ff">
+          <text x="162" y="156"></text><text x="162" y="182"></text><text x="162" y="208"></text>
+          <text x="162" y="234"></text><text x="162" y="260"></text><text x="162" y="286"></text>
+          <text x="162" y="312"></text>
+        </g>
+        <rect class="crt__scan" x="140" y="120" width="320" height="228" fill="url(#scan)" opacity=".28"/>
+        <rect class="crt__roll" x="140" y="120" width="320" height="40" fill="#3d7bff" opacity=".07"/>
+        <ellipse cx="220" cy="150" rx="130" ry="50" fill="#fff" opacity=".05"/>
+      </g>
+      <text x="140" y="392" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="3" fill="#0f2f72">ARQ·2026</text>
+      <circle class="crt__led" cx="452" cy="388" r="5" fill="#3d7bff"/>
+      <!-- floating keyboard -->
+      <g class="crt__kbd">
+        <path d="M120 528 L480 528 L520 578 L80 578 Z" fill="url(#body)"/>
+        <path d="M80 578 L520 578 L520 588 L80 588 Z" fill="#0f2f72"/>
+        <g fill="#061433" opacity=".75">
+          <rect x="138" y="536" width="22" height="9" rx="2"/><rect x="166" y="536" width="22" height="9" rx="2"/><rect x="194" y="536" width="22" height="9" rx="2"/><rect x="222" y="536" width="22" height="9" rx="2"/><rect x="250" y="536" width="22" height="9" rx="2"/><rect x="278" y="536" width="22" height="9" rx="2"/><rect x="306" y="536" width="22" height="9" rx="2"/><rect x="334" y="536" width="22" height="9" rx="2"/><rect x="362" y="536" width="22" height="9" rx="2"/><rect x="390" y="536" width="22" height="9" rx="2"/><rect x="418" y="536" width="44" height="9" rx="2"/>
+          <rect x="124" y="550" width="26" height="10" rx="2"/><rect x="156" y="550" width="26" height="10" rx="2"/><rect x="188" y="550" width="26" height="10" rx="2"/><rect x="220" y="550" width="26" height="10" rx="2"/><rect x="252" y="550" width="26" height="10" rx="2"/><rect x="284" y="550" width="26" height="10" rx="2"/><rect x="316" y="550" width="26" height="10" rx="2"/><rect x="348" y="550" width="26" height="10" rx="2"/><rect x="380" y="550" width="26" height="10" rx="2"/><rect x="412" y="550" width="62" height="10" rx="2"/>
+          <rect x="190" y="565" width="220" height="9" rx="2"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <!-- floating game bits -->
+  <div class="float float--pad" data-depth="0.8" aria-hidden="true">
+    <svg viewBox="0 0 200 120">
+      <path d="M52 18 H148 C178 18 196 46 198 78 C200 106 182 118 166 110 C152 103 146 86 132 82 H68 C54 86 48 103 34 110 C18 118 0 106 2 78 C4 46 22 18 52 18 Z" fill="#e3eeff"/>
+      <path d="M52 18 H148 C178 18 196 46 198 78 C199 92 194 103 186 108 C190 80 172 40 140 34 H60 C28 40 10 80 14 108 C6 103 1 92 2 78 C4 46 22 18 52 18 Z" fill="#fff" opacity=".5"/>
+      <g fill="#061433"><rect x="38" y="50" width="12" height="36" rx="3"/><rect x="26" y="62" width="36" height="12" rx="3"/></g>
+      <circle cx="150" cy="52" r="7" fill="#3d7bff"/><circle cx="166" cy="66" r="7" fill="#1c4fb0"/><circle cx="134" cy="66" r="7" fill="#1c4fb0"/><circle cx="150" cy="80" r="7" fill="#3d7bff"/>
+      <circle cx="80" cy="84" r="11" fill="#061433"/><circle cx="120" cy="84" r="11" fill="#061433"/>
+    </svg>
+  </div>
+  <div class="keys" data-depth="0.5" aria-hidden="true">
+    <span class="key key--w">W</span><span class="key key--a">A</span><span class="key key--s">S</span><span class="key key--d">D</span>
+  </div>
+
+  <div class="hero__name-outline" aria-hidden="true" data-depth="0.15">ARAQUE</div>
+
+  <div class="hero__left">
+    <p class="kicker">SOFTWARE ARCHITECT</p>
+    <p class="kicker kicker--sub">— FOUNDER @ PITLY · 2026</p>
+    <p class="hero__desc">
+      <span class="es">Construyo plataformas reales en producción, hardware que escucha y mundos que no existen — software, electrónica y diseño de juegos en una sola cabeza.</span>
+      <span class="en">I build real platforms in production, hardware that listens and worlds that don't exist — software, electronics and game design inside one head.</span>
+    </p>
+  </div>
+
+  <div class="hero__right">
+    <h2 class="hero__tag"><em class="red"><span class="es">Arquitecto de</span><span class="en">Architect of</span></em><br/><span class="es">lo imposible</span><span class="en">the impossible</span></h2>
+    <p class="hero__small">
+      <span class="es">Ticketing a escala, SaaS para talleres en EE. UU., IoT con ESP32 y gameplay en Unreal. Tunja → el mundo.</span>
+      <span class="en">Ticketing at scale, SaaS for US auto shops, ESP32 IoT and Unreal gameplay. Tunja → the world.</span>
+    </p>
+
+    <div class="mini-card tilt">
+      <div class="mini-card__img mini-card__img--term" aria-hidden="true"><span>&gt;_</span></div>
+      <div class="mini-card__body">
+        <strong>Sebastián Araque</strong>
+        <small><span class="es">FREELANCE · DISPONIBLE PARA PROYECTOS</span><span class="en">FREELANCE · OPEN FOR PROJECTS</span></small>
+        <a href="https://wa.me/573183696873" target="_blank" rel="noopener" class="btn btn--red btn--sm"><span class="es">Hablemos</span><span class="en">Let's talk</span></a>
       </div>
     </div>
-    <!-- End Loader -->
+  </div>
 
-    <!--
-        ===================
-           NAVIGATION
-        ===================
-        -->
-    <header
-      class="black-bg mh-header mh-fixed-nav nav-scroll mh-xs-mobile-nav wow fadeInUp"
-      id="mh-header"
-    >
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <nav class="navbar navbar-expand-lg mh-nav nav-btn">
-            <a class="navbar-brand" href="#">
-              <img
-                src="assets/images/LOGO.png"
-                alt=""
-                class="img-fluid"
-              />
-              <!-- <h2>Maha</h2> -->
-            </a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon icon"></span>
-            </button>
+  <div class="hero__socials">
+    <a href="https://www.linkedin.com/in/joan-sebastian-araque-prieto-a54ba716b/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+    <a href="https://github.com/sebasaraque" target="_blank" rel="noopener" aria-label="GitHub">gh</a>
+    <a href="https://www.youtube.com/@sebasaraque20" target="_blank" rel="noopener" aria-label="YouTube">yt</a>
+    <a href="https://www.tiktok.com/@sebas_araque1" target="_blank" rel="noopener" aria-label="TikTok">tt</a>
+  </div>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-0 ml-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#mh-home">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#mh-about">About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#mh-skills">Skills</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#mh-experience">Experiences</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
+  <button class="cta-box" id="printBtn">
+    <span><span class="es">DESCARGAR<br/>HOJA DE<br/>VIDA</span><span class="en">DOWNLOAD<br/>MY<br/>RESUME</span></span>
+    <i>↓</i>
+  </button>
 
-    <!--
-        ===================
-            HOME 
-        ===================
-        -->
-    <section class="mh-home" id="mh-home">
-      <div class="home-ovimg">
-        <div class="container">
-          <div
-            class="row xs-column-reverse section-separator vertical-middle-content home-padding"
-          >
-            <div class="col-sm-6">
-              <div class="mh-header-info">
-                <div
-                  class="mh-promo wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.1s"
-                >
-                  <span>Hello I'm</span>
-                </div>
+  <div class="hero__scroll"><span class="es">scroll para soñar</span><span class="en">scroll to dream</span></div>
+</section>
 
-                <h2
-                  class="wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.2s"
-                >
-                  Sebastian Araque
-                </h2>
-                <h4
-                  class="wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.3s"
-                >
-                  Game Designer & Front-end Developer
-                </h4>
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>ANGULAR ✦ SPRING BOOT ✦ MONGODB ✦ AWS ✦ FASTAPI ✦ ESP32 ✦ MATLAB ✦ SIMULINK ✦ UNREAL ENGINE ✦ UNITY ✦ C++ ✦ VUE ✦ PYTHON ✦ BLENDER ✦ DAVINCI RESOLVE ✦&nbsp;</span>
+    <span>ANGULAR ✦ SPRING BOOT ✦ MONGODB ✦ AWS ✦ FASTAPI ✦ ESP32 ✦ MATLAB ✦ SIMULINK ✦ UNREAL ENGINE ✦ UNITY ✦ C++ ✦ VUE ✦ PYTHON ✦ BLENDER ✦ DAVINCI RESOLVE ✦&nbsp;</span>
+  </div>
+</div>
 
-                <ul>
-                  <li
-                    class="wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.4s"
-                  >
-                    <i class="fa fa-envelope"></i
-                    ><a href="mailto:">sebasaraque20@gmail.com</a>
-                  </li>
-                  <li
-                    class="wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.5s"
-                  >
-                    <i class="fa fa-phone"></i
-                    ><a href="https://wa.me/573183696873?" target="_blank">+57 318 369 6873</a>
-                  </li>
-                  <li
-                    class="wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.6s"
-                  >
-                    <i class="fa fa-map-marker"></i>
-                    <address>Colombia</address>
-                  </li>
-                </ul>
+<!-- ============ ABOUT ============ -->
+<section class="about section" id="about">
+  <p class="eyebrow">01 — <span class="es">Sobre mí</span><span class="en">About</span></p>
+  <h2 class="big-quote reveal">
+    <span class="es">Una mente, <em>tres</em> dimensiones. Escribo código que vende boletas, <em>soldo</em> sensores que escuchan y diseño <em>mundos</em> que se juegan.</span>
+    <span class="en">One mind, <em>three</em> dimensions. I write code that sells tickets, <em>wire</em> sensors that listen and design <em>worlds</em> you can play.</span>
+  </h2>
 
-                <ul
-                  class="social-icon wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.7s"
-                >
-                  <li>
-                    <a
-                      target="_blank"
-                      href="https://www.linkedin.com/in/joan-sebastian-araque-prieto-a54ba716b/"
-                      ><i class="fa fa-linkedin"></i
-                    ></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div
-                class="hero-img wow fadeInUp"
-                data-wow-duration="0.8s"
-                data-wow-delay="0.6s"
-              >
-                <div class="img-border">
-                  <img
-                    src="assets/images/perfil.png"
-                    alt=""
-                    class="img-fluid"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <div class="dims">
+    <article class="dim tilt reveal">
+      <span class="dim__n">I</span>
+      <h3><span class="es">Software</span><span class="en">Software</span></h3>
+      <p><span class="es">Arquitecto freelance y full-stack. Plataforma de boletería en producción con Angular, Spring Boot, MongoDB y AWS. Founder de Pitly, un SaaS para talleres en EE. UU. y Latinoamérica.</span><span class="en">Freelance architect & full-stack engineer. A production ticketing platform with Angular, Spring Boot, MongoDB and AWS. Founder of Pitly, a SaaS for auto shops in the US and LatAm.</span></p>
+    </article>
+    <article class="dim tilt reveal">
+      <span class="dim__n">II</span>
+      <h3><span class="es">Electrónica</span><span class="en">Electronics</span></h3>
+      <p><span class="es">Estudiante de Ingeniería Electrónica en la Universidad Santo Tomás, Tunja. ESP32, IoT, procesamiento digital de señales, control y conversión electromagnética.</span><span class="en">Electronic Engineering student at Universidad Santo Tomás, Tunja. ESP32, IoT, digital signal processing, control systems and electromagnetic conversion.</span></p>
+    </article>
+    <article class="dim tilt reveal">
+      <span class="dim__n">III</span>
+      <h3><span class="es">Diseño & historias</span><span class="en">Design & stories</span></h3>
+      <p><span class="es">BS en Game Design de Full Sail University. Gameplay en Unreal, 3D en Blender, y creador de contenido automotriz en TikTok y YouTube.</span><span class="en">BS in Game Design from Full Sail University. Unreal gameplay, Blender 3D, and automotive content creator on TikTok and YouTube.</span></p>
+    </article>
+  </div>
 
-    <!--
-        ==================
-            ABOUT
-        =================
-        -->
-    <section class="mh-about" id="mh-about">
-      <div class="container">
-        <div class="row section-separator">
-          <div class="col-sm-12 col-md-6">
-            <div
-              class="mh-about-img shadow-2 wow fadeInUp"
-              data-wow-duration="0.8s"
-              data-wow-delay="0.4s"
-            >
-              <img src="assets/images/about.jpg" alt="" class="img-fluid" />
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="mh-about-inner">
-              <h2
-                class="wow fadeInUp"
-                data-wow-duration="0.8s"
-                data-wow-delay="0.1s"
-              >
-                About Me
-              </h2>
-              <p
-                class="wow fadeInUp"
-                data-wow-duration="0.8s"
-                data-wow-delay="0.2s"
-              >
-              As a graduate of a Bachelor of Science degree in Game Design from Full Sail University, I possess a diverse skill set in game development. From coding to level design and gameplay creation, I'm proficient in various aspects of the process. My collaborative nature ensures effective teamwork, while my proactive approach to learning new programming languages keeps me abreast of technological advancements. Furthermore, my problem-solving skills contribute significantly to overcoming challenges encountered during game development.
-                I am good at
-              </p>
-              <div
-                class="mh-about-tag wow fadeInUp"
-                data-wow-duration="0.8s"
-                data-wow-delay="0.3s"
-              >
-                <ul>
-                  <li><span>Unreal Engine</span></li>
-                  <li><span>Unity</span></li>
-                  <li><span>C#</span></li>
-                  <li><span>C++</span></li>
-                  <li><span>Blueprint Scripting</span></li>
-                  <li><span>Github</span></li>
-                  <li><span>Blender</span></li>
-                  <li><span>Vue.js</span></li>
-                  <li><span>Html</span></li>
-                  <li><span>css</span></li>
-                  <li><span>Nuxt.js</span></li>
-                  <li><span>Node.js</span></li>
-                  <li><span>Jsavascript</span></li>
-                </ul>
-              </div>
-              <a
-                target="_blank"
-                href="assets\Resume Sebasaraque 2024.pdf"
-                class="btn btn-fill wow fadeInUp"
-                data-wow-duration="0.8s"
-                data-wow-delay="0.4s"
-                >Downlaod CV <i class="fa fa-download"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <div class="stats">
+    <div class="stat reveal"><b data-count="7">0</b><span>+</span><p><span class="es">años construyendo software</span><span class="en">years shipping software</span></p></div>
+    <div class="stat reveal"><b data-count="1">0</b><p><span class="es">SaaS propio en marcha</span><span class="en">own SaaS in motion</span></p></div>
+    <div class="stat reveal"><b>C1</b><p><span class="es">inglés certificado</span><span class="en">certified English</span></p></div>
+    <div class="stat reveal"><b>∞</b><p><span class="es">proyectos en paralelo</span><span class="en">parallel side quests</span></p></div>
+  </div>
+</section>
 
-    <!--
-        ===================
-           SERVICE
-        ===================
-        -->
-    <section class="mh-service">
-      <div class="container">
-        <div class="row section-separator">
-          <div
-            class="col-sm-12 text-center section-title wow fadeInUp"
-            data-wow-duration="0.8s"
-            data-wow-delay="0.2s"
-          >
-            <h3>What I do</h3>
-          </div>
-          <div class="col-sm-4">
-            <div
-              class="mh-service-item shadow-1 dark-bg wow fadeInUp"
-              data-wow-duration="0.8s"
-              data-wow-delay="0.3s"
-            >
-              <i class="fa fa-bullseye purple-color"></i>
-              <h3>UI Design</h3>
-              <p>
-                UI design is a complex, highly selective process with a long
-                list of stakeholders. Learn how to build an intuitive, effective
-                and harmonious user interface.
-              </p>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div
-              class="mh-service-item shadow-1 dark-bg wow fadeInUp"
-              data-wow-duration="0.8s"
-              data-wow-delay="0.5s"
-            >
-              <i class="fa fa-code iron-color"></i>
-              <h3>Web Development</h3>
-              <p>
-                The web is increasingly becoming the backbone of so many
-                different businesses and organisations of all kinds. I you need
-                to know what is going on in the ever-changing world of web
-                design and development.
-              </p>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div
-              class="mh-service-item shadow-1 dark-bg wow fadeInUp"
-              data-wow-duration="0.8s"
-              data-wow-delay="0.7s"
-            >
-              <i class="fa fa-object-ungroup sky-color"></i>
-              <h3>Firebase Database</h3>
-              <p>
-                Firebase offers numerous easy-to-use SDKs, efficient back-end
-                services, and user interface libraries for authenticating the
-                users on the application
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- ============ WORK (horizontal dream corridor) ============ -->
+<section class="work" id="work">
+  <div class="work__sticky">
+    <div class="work__head">
+      <p class="eyebrow">02 — <span class="es">Experiencia</span><span class="en">Experience</span></p>
+      <h2 class="title"><span class="es">El pasillo<br/><em>infinito</em></span><span class="en">The infinite<br/><em>corridor</em></span></h2>
+      <p class="work__hint"><span class="es">sigue bajando →</span><span class="en">keep scrolling →</span></p>
+    </div>
+    <div class="work__track" id="workTrack">
 
-    <!--
-        ===================
-           SKILLS
-        ===================
-        -->
-    <section class="mh-skills" id="mh-skills">
-      <div class="container">
-        <div class="row section-separator">
-          <div class="section-title text-center col-sm-12">
-            <!--<h2>Skills</h2>-->
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div class="mh-skills-inner">
-              <div
-                class="mh-professional-skill wow fadeInUp"
-                data-wow-duration="0.8s"
-                data-wow-delay="0.3s"
-              >
-                <h3>Technical Skills</h3>
-                <div class="each-skills">
-                  <div class="candidatos">
-                    <div class="parcial">
-                      <div class="info">
-                        <div class="nome">Unreal Engine & Unity</div>
-                        <div class="percentagem-num">90%</div>
-                      </div>
-                      <div class="progressBar">
-                        <div class="percentagem" style="width: 90%"></div>
-                      </div>
-                    </div>
-                  </div> <div class="candidatos">
-                    <div class="parcial">
-                      <div class="info">
-                        <div class="nome">C++ C# Blueprint</div>
-                        <div class="percentagem-num">89%</div>
-                      </div>
-                      <div class="progressBar">
-                        <div class="percentagem" style="width: 89%"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="candidatos">
-                    <div class="parcial">
-                      <div class="info">
-                        <div class="nome">Javascript</div>
-                        <div class="percentagem-num">86%</div>
-                      </div>
-                      <div class="progressBar">
-                        <div class="percentagem" style="width: 86%"></div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="candidatos">
-                    <div class="parcial">
-                      <div class="info">
-                        <div class="nome">Vue.js</div>
-                        <div class="percentagem-num">86%</div>
-                      </div>
-                      <div class="progressBar">
-                        <div class="percentagem" style="width: 86%"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="candidatos">
-                    <div class="parcial">
-                      <div class="info">
-                        <div class="nome">HTML</div>
-                        <div class="percentagem-num">80%</div>
-                      </div>
-                      <div class="progressBar">
-                        <div class="percentagem" style="width: 80%"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="candidatos">
-                    <div class="parcial">
-                      <div class="info">
-                        <div class="nome">CSS</div>
-                        <div class="percentagem-num">78%</div>
-                      </div>
-                      <div class="progressBar">
-                        <div class="percentagem" style="width: 78%"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="candidatos">
-                    <div class="parcial">
-                      <div class="info">
-                        <div class="nome">Github & GitLab</div>
-                        <div class="percentagem-num">65%</div>
-                      </div>
-                      <div class="progressBar">
-                        <div class="percentagem" style="width: 65%"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div> <div class="candidatos">
-                  <div class="parcial">
-                    <div class="info">
-                      <div class="nome">Blender</div>
-                      <div class="percentagem-num">60%</div>
-                    </div>
-                    <div class="progressBar">
-                      <div class="percentagem" style="width: 60%"></div>
-                    </div>
-                  </div>
+      <article class="job job--hot">
+        <div class="job__top"><span class="job__date">2026 — <span class="es">Hoy</span><span class="en">Now</span></span><span class="job__badge">FOUNDER</span></div>
+        <h3>Pitly</h3>
+        <p class="job__role"><span class="es">Founder & Product Engineer</span><span class="en">Founder & Product Engineer</span></p>
+        <p><span class="es">SaaS para talleres mecánicos, de detailing, PPF y polarizado en EE. UU. y Colombia. Producto bilingüe (EN/ES), app funcional con beta abierta, branding propio y validación comercial directa con talleres.</span><span class="en">SaaS for mechanic, detailing, PPF and tint shops in the US and Colombia. Bilingual product (EN/ES), working app with open beta, own branding and direct go-to-market validation with shops.</span></p>
+        <ul class="tags"><li>SaaS</li><li>Product</li><li>i18n</li><li>Go-to-market</li></ul>
+      </article>
 
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <div
-              class="mh-professional-skills wow fadeInUp"
-              data-wow-duration="0.8s"
-              data-wow-delay="0.5s"
-            >
-              <h3>Professional Skills</h3>
-              <ul class="mh-professional-progress">
-                <li>
-                  <div
-                    class="mh-progress mh-progress-circle"
-                    data-progress="95"
-                  ></div>
-                  <div class="pr-skill-name">Communication</div>
-                </li>
-                <li>
-                  <div
-                    class="mh-progress mh-progress-circle"
-                    data-progress="85"
-                  ></div>
-                  <div class="pr-skill-name">Team Work</div>
-                </li>
-                <li>
-                  <div
-                    class="mh-progress mh-progress-circle"
-                    data-progress="76"
-                  ></div>
-                  <div class="pr-skill-name">Project Management</div>
-                </li>
-                <li>
-                  <div
-                    class="mh-progress mh-progress-circle"
-                    data-progress="78"
-                  ></div>
-                  <div class="pr-skill-name">Creativity</div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      <article class="job">
+        <div class="job__top"><span class="job__date"><span class="es">Hoy</span><span class="en">Now</span></span><span class="job__badge">FREELANCE</span></div>
+        <h3><span class="es">Arquitecto de Software</span><span class="en">Software Architect</span></h3>
+        <p class="job__role"><span class="es">Proyectos para clientes · estudio web propio</span><span class="en">Client projects · own web studio</span></p>
+        <p><span class="es">Diseño de arquitectura, desarrollo y despliegue de proyectos a la medida. Actualmente lanzando mi propio estudio de desarrollo web.</span><span class="en">Architecture design, development and deployment of custom client projects. Currently launching my own web development studio.</span></p>
+        <ul class="tags"><li>Architecture</li><li>Full-stack</li><li>AWS</li></ul>
+      </article>
 
-    <!--
-        ===================
-           EXPERIENCES
-        ===================
-        -->
-    <section class="mh-experince" id="mh-experience">
-      <div class="bolor-overlay">
-        <div class="container">
-          <div class="row section-separator">
-            
-            <div class="col-sm-12 col-md-6">
-              <div class="mh-work">
-                <h3>Work Experience</h3>
-                <div class="mh-experience-deatils">
-                  <!-- Education Institutes-->
-                  <div
-                    class="mh-work-item dark-bg wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.4s"
-                  >
-                    <h4>P1 <a>Games</a></h4>
-                    <div class="mh-eduyear">2024-Present</div>
-                    <span>Scavenger Shores Harvest of Hope</span>
-                    <ul class="work-responsibility">
-                      <li>
-                        <i class="fa fa-circle"></i>Development of mechanics such as grappling hook, spear, Item Pick up and Inventory systems 
+      <article class="job">
+        <div class="job__top"><span class="job__date"><span class="es">Hoy</span><span class="en">Now</span></span><span class="job__badge">TICKETING</span></div>
+        <h3>BlastTickets</h3>
+        <p class="job__role"><span class="es">Ingeniero de software (contratista)</span><span class="en">Software engineer (contractor)</span></p>
+        <p><span class="es">Desarrollo, mantenimiento y soporte de la plataforma de boletería que usan varias empresas del sector. Mapas de asientos en SVG con arquitectura de concurrencia, pasarelas de pago Bold y Wompi, operación de eventos en vivo e ingeniería de datos sobre AWS.</span><span class="en">Development, maintenance and support of a ticketing platform used by several companies in the industry. SVG seat maps with a concurrency-safe architecture, Bold and Wompi payment gateways, live-event ops and data engineering on AWS.</span></p>
+        <ul class="tags"><li>Angular</li><li>Spring Boot</li><li>MongoDB</li><li>AWS</li><li>SVG seat maps</li><li>Bold · Wompi</li></ul>
+      </article>
 
-                      </li>
-                      <li>
-                        <i class="fa fa-circle"></i>Niagara particle system
-                      </li>
-                      <li>
-                        <i class="fa fa-circle"></i>AI Behavior Trees, Blackboards
-                      </li>
-                      <li>
-                        <i class="fa fa-circle"></i>Landscaping, Level Design
-                      </li>
-                      <li>
-                        <i class="fa fa-circle"></i>3D Assets
-                      </li>
-                      <li>
-                        <i class="fa fa-circle"></i>UX and UI design
-                      </li>
-                      <li>
-                        <i class="fa fa-circle"></i>Version Control with GitHub
-                      </li>
-                      <li>
-                        <i class="fa fa-circle"></i>Game Testing
-                      </li>
-                    </ul>
-                  </div>
-                  <!-- Education Institutes-->
-                  <div
-                    class="mh-work-item dark-bg wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.4s"
-                  >
-                    <h4>Tech Lead <a>Salve Regina</a></h4>
-                    <div class="mh-eduyear">2019-2022</div>
-                    <span>Responsibility :</span>
-                    <ul class="work-responsibility">
-                      <li>
-                        <i class="fa fa-circle"></i>Creation of Offilawyer
-                        interfaces sections such as clients, tasks.
-                      </li>
-                      <li>
-                        <i class="fa fa-circle"></i>Version 1.0 of calendar for
-                        the project with libraries.
-                      </li>
-                      <li>
-                        <i class="fa fa-circle"></i>File uploader connected with
-                        Firebase database.
-                      </li>
-                      <li>
-                        <i class="fa fa-circle"></i>Creation of environments for
-                        production and development.
-                      </li>
-                    </ul>
-                  </div>
-                  <!-- Education Institutes-->
-                  <div
-                    class="mh-work-item dark-bg wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.6s"
-                  >
-                    <h4>Offilawyer <a>Freelancer, Remote</a></h4>
-                    <div class="mh-eduyear">02/2019-08/2019</div>
-                    <span>Responsibility :</span>
-                    <ul class="work-responsibility">
-                      <li>
-                        <i class="fa fa-circle"></i>Create the project from
-                        scratch with VueJS
-                      </li>
-                      <li>
-                        <i class="fa fa-circle"></i>Implementation of libraries
-                        such as bootstrap, Full calendar and more.
-                      </li>
-                      <li>
-                        <i class="fa fa-circle"></i>Realization of the first
-                        dashboard developments.
-                      </li>
-                      <li>
-                        <i class="fa fa-circle"></i>Creation of Firebase
-                        database project implementation with Vuex.
-                      </li>
-                      <li>
-                        <i class="fa fa-circle"></i>Creation of Vuex files to
-                        send requests to the database.
-                      </li>
-                    </ul>
-                  </div>
-                  <!-- Education Institutes-->
-                  <div
-                    class="mh-work-item dark-bg wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.7s"
-                  >
-                    <h4>AraquePrieto Abogados <a>Freelancer, Remote</a></h4>
-                    <div class="mh-eduyear">2021-2021</div>
-                    <span>Responsibility :</span>
-                    <ul class="work-responsibility">
-                      <li>
-                        <i class="fa fa-circle"></i>Create the project from
-                        scratch using HTML, CSS and JavaScript.
-                      </li>
-                      <li>
-                        <i class="fa fa-circle"></i>Design of the website
-                        according to the needs.
-                      </li>
-                      <li>
-                        <i class="fa fa-circle"></i>Implementation bootstrap for
-                        the design.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6">
-              <div class="mh-education">
-                <h3
-                  class="wow fadeInUp"
-                  data-wow-duration="0.8s"
-                  data-wow-delay="0.2s"
-                >
-                  Education
-                </h3>
-                <div class="mh-education-deatils">
-                  <!-- Education Institutes-->
-                  <div
-                    class="mh-education-item dark-bg wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.3s"
-                  >
-                    <h4>Game Design <a>Full Sail University</a></h4>
-                    <div class="mh-eduyear">2017-2020</div>
-                    <p></p>
-                  </div>
-                  <!-- Education Institutes-->
-                  <div
-                    class="mh-education-item dark-bg wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.5s"
-                  >
-                    <h4>HTML & CSS <a>Self Taught</a></h4>
-                    <div class="mh-eduyear">2019-Present</div>
-                  </div>
-                  <!-- Education Institutes-->
-                  <div
-                    class="mh-education-item dark-bg wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.6s"
-                  >
-                    <h4>VueJS & NuxtJS <a>Self Taught</a></h4>
-                    <div class="mh-eduyear">2019-Present</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      <article class="job">
+        <div class="job__top"><span class="job__date">2024</span><span class="job__badge">GAMES</span></div>
+        <h3>P1 Games</h3>
+        <p class="job__role"><span class="es">Game Designer & Programador (voluntario)</span><span class="en">Game Designer & Programmer (volunteer)</span></p>
+        <p><span class="es"><i>Scavenger Shores: Harvest of Hope</i> — gancho, lanza, pick-up e inventario, Niagara, IA con Behavior Trees, level design y UI/UX con un equipo internacional.</span><span class="en"><i>Scavenger Shores: Harvest of Hope</i> — grappling hook, spear, pick-up & inventory, Niagara VFX, Behavior Tree AI, level design and UI/UX with an international team.</span></p>
+        <ul class="tags"><li>Unreal</li><li>Blueprints</li><li>Niagara</li></ul>
+      </article>
 
-    <!--
-        ===================
-           FOOTER 1
-        ===================
-        -->
-    <footer class="mh-footer" id="mh-contact">
-      <div class="map-image image-bg">
-        <div class="container">
-          <div class="row section-separator">
-            <div
-              class="col-sm-12 section-title wow fadeInUp"
-              data-wow-duration="0.8s"
-              data-wow-delay="0.2s"
-            >
-              <h3>Contact Me</h3>
-            </div>
-            <div class="col-sm-12 mh-footer-address">
-              <div class="row">
-                <div class="col-sm-12 col-md-4">
-                  <div
-                    class="mh-address-footer-item dark-bg shadow-1 wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.3s"
-                  >
-                    <div class="each-icon">
-                      <i class="fa fa-location-arrow"></i>
-                    </div>
-                    <div class="each-info">
-                      <h4>Address</h4>
-                      <address>Bogota, Colombia</address>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                  <div
-                    class="mh-address-footer-item dark-bg shadow-1 wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.5s"
-                  >
-                    <div class="each-icon">
-                      <i class="fa fa-envelope-o"></i>
-                    </div>
-                    <div class="each-info">
-                      <h4>Email</h4>
-                      <a href="mailto:sebasaraqur20@gmail.com"
-                        >sebasaraque20@gmail.com</a
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                  <div
-                    class="mh-address-footer-item dark-bg shadow-1 wow fadeInUp"
-                    data-wow-duration="0.8s"
-                    data-wow-delay="0.7s"
-                  >
-                    <div class="each-icon">
-                      <i class="fa fa-phone"></i>
-                    </div>
-                    <div class="each-info">
-                      <h4>Phone - Whatsapp</h4>
-                      <a href="https://wa.me/573183696873?" target="_blank">+57 (318)-369-6873</a
-                      ><br />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
+      <article class="job">
+        <div class="job__top"><span class="job__date">2019 — 2022</span><span class="job__badge">TECH LEAD</span></div>
+        <h3>Salve Regina</h3>
+        <p class="job__role">Tech Lead · Bogotá</p>
+        <p><span class="es">Interfaces de Offilawyer (clientes, tareas), calendario v1.0, carga de archivos con Firebase y ambientes de desarrollo y producción.</span><span class="en">Offilawyer interfaces (clients, tasks), calendar v1.0, Firebase file uploader and dev/prod environments.</span></p>
+        <ul class="tags"><li>Vue</li><li>Nuxt</li><li>Firebase</li></ul>
+      </article>
 
-            <div
-              class="col-sm-12 mh-copyright wow fadeInUp"
-              data-wow-duration="0.8s"
-              data-wow-delay="0.3s"
-            >
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="text-left text-xs-center">
-                    <p>All right reserved Sebastian Araque @ 2022</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+      <article class="job">
+        <div class="job__top"><span class="job__date">2019 · 2021</span><span class="job__badge">FREELANCE</span></div>
+        <h3>Offilawyer · AraquePrieto</h3>
+        <p class="job__role">Freelance · Remote</p>
+        <p><span class="es">Arranqué Offilawyer desde cero en Vue/Nuxt + Vuex + Firebase en dos semanas, y diseñé y publiqué el sitio de AraquePrieto Abogados.</span><span class="en">Bootstrapped Offilawyer from scratch in Vue/Nuxt + Vuex + Firebase in two weeks, and designed & shipped the AraquePrieto Abogados website.</span></p>
+        <ul class="tags"><li>Vue</li><li>Vuex</li><li>HTML/CSS</li></ul>
+      </article>
 
-    <!--
-    ==============
-    * JS Files *
-    ==============
-    -->
+      <div class="job job--end"><span>✦</span><p><span class="es">continuará…</span><span class="en">to be continued…</span></p></div>
+    </div>
+  </div>
+</section>
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- ============ LAB ============ -->
+<section class="lab section" id="lab">
+  <p class="eyebrow">03 — Lab</p>
+  <h2 class="title"><span class="es">Laboratorio de<br/><em>objetos que sueñan</em></span><span class="en">Lab of<br/><em>dreaming objects</em></span></h2>
+  <p class="lab__intro"><span class="es">Hardware, señales y prototipos de Ingeniería Electrónica — USTA Tunja.</span><span class="en">Hardware, signals and prototypes from Electronic Engineering — USTA Tunja.</span></p>
 
-    <!-- jQuery -->
-    <script src="assets/plugins/js/jquery.min.js"></script>
-    <!-- popper -->
-    <script src="assets/plugins/js/popper.min.js"></script>
-    <!-- bootstrap -->
-    <script src="assets/plugins/js/bootstrap.min.js"></script>
-    <!-- owl carousel -->
-    <script src="assets/plugins/js/owl.carousel.js"></script>
-    <!-- validator -->
-    <script src="assets/plugins/js/validator.min.js"></script>
-    <!-- wow -->
-    <script src="assets/plugins/js/wow.min.js"></script>
-    <!-- mixin js-->
-    <script src="assets/plugins/js/jquery.mixitup.min.js"></script>
-    <!-- circle progress-->
-    <script src="assets/plugins/js/circle-progress.js"></script>
-    <!-- jquery nav -->
-    <script src="assets/plugins/js/jquery.nav.js"></script>
-    <!-- Fancybox js-->
-    <script src="assets/plugins/js/jquery.fancybox.min.js"></script>
-    <!-- isotope js-->
-    <script src="assets/plugins/js/isotope.pkgd.js"></script>
-    <script src="assets/plugins/js/packery-mode.pkgd.js"></script>
-    <!-- Custom Scripts-->
-    <script src="assets/js/map-init.js"></script>
-    <script src="assets/js/custom-scripts.js"></script>
-  </body>
+  <div class="lab__grid">
+    <article class="exp tilt reveal">
+      <div class="exp__icon">〰</div>
+      <h3><span class="es">Theremin semiconductor</span><span class="en">Semiconductor theremin</span></h3>
+      <p><span class="es">Interfaz gestual sin contacto: el aire se vuelve sonido.</span><span class="en">Touchless gesture interface: air becomes sound.</span></p>
+      <code>ESP32 · VL53L0X ToF · BH1750 · Hall · OLED</code>
+    </article>
+    <article class="exp tilt reveal">
+      <div class="exp__icon">☁</div>
+      <h3><span class="es">Monitor de gases IoT</span><span class="en">IoT gas monitor</span></h3>
+      <p><span class="es">Estación ambiental que respira y reporta a la nube en tiempo real.</span><span class="en">An environmental station that breathes and reports to the cloud in real time.</span></p>
+      <code>ESP32 · BME280 · MQ-2 · MQ-7 · DHT22 · ThingSpeak</code>
+    </article>
+    <article class="exp tilt reveal">
+      <div class="exp__icon">♪</div>
+      <h3><span class="es">El piano que escucha</span><span class="en">The listening piano</span></h3>
+      <p><span class="es">Un PC toca, otro escucha por micrófono y detecta notas polifónicas; un ESP32 enciende un LED por nota.</span><span class="en">One PC plays, another listens by mic with polyphonic note detection; an ESP32 lights an LED per note.</span></p>
+      <code>MATLAB · DSP · ESP32</code>
+    </article>
+    <article class="exp tilt reveal">
+      <div class="exp__icon">∿</div>
+      <h3><span class="es">Adquisición + FFT</span><span class="en">Acquisition + FFT</span></h3>
+      <p><span class="es">Sistema de adquisición de datos con graficación en tiempo real y análisis espectral.</span><span class="en">Data acquisition with real-time plotting and spectral analysis.</span></p>
+      <code>ESP32 · Python · FFT</code>
+    </article>
+    <article class="exp tilt reveal">
+      <div class="exp__icon">⧉</div>
+      <h3><span class="es">Filtros en cascada</span><span class="en">Cascaded filters</span></h3>
+      <p><span class="es">Filtros digitales en cascada, cuantización y muestreo TDM/PAM visualizados en osciloscopio de 10 canales.</span><span class="en">Cascaded digital filters, quantization and TDM/PAM sampling on a 10-channel scope.</span></p>
+      <code>Simulink · MATLAB</code>
+    </article>
+    <article class="exp tilt reveal">
+      <div class="exp__icon">◎</div>
+      <h3>EventFlow SaaS</h3>
+      <p><span class="es">Proyecto final de Bases de Datos: SaaS de eventos de punta a punta.</span><span class="en">Databases final project: an end-to-end events SaaS.</span></p>
+      <code>Angular · FastAPI · MongoDB</code>
+    </article>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="skills section" id="skills">
+  <p class="eyebrow">04 — Skills</p>
+  <h2 class="title"><span class="es">Constelación de<br/><em>herramientas</em></span><span class="en">Constellation of<br/><em>tools</em></span></h2>
+
+  <div class="skills__grid">
+    <div class="cluster reveal"><h4>Frontend</h4><ul><li>Angular</li><li>TypeScript</li><li>JavaScript</li><li>Vue / Nuxt</li><li>HTML · CSS</li><li>SVG</li></ul></div>
+    <div class="cluster reveal"><h4>Backend & Data</h4><ul><li>Java Spring Boot</li><li>FastAPI</li><li>Python</li><li>Node.js</li><li>MongoDB</li><li>Firebase</li></ul></div>
+    <div class="cluster reveal"><h4>Cloud & DevOps</h4><ul><li>AWS Elastic Beanstalk</li><li>Amplify</li><li>Route 53</li><li>ALB · ACM</li><li>EC2</li><li>GitHub · GitLab</li></ul></div>
+    <div class="cluster reveal"><h4><span class="es">Pagos & móvil</span><span class="en">Payments & mobile</span></h4><ul><li>Bold</li><li>Wompi</li><li>App Store Connect</li><li>TestFlight</li><li>Google Play Console</li></ul></div>
+    <div class="cluster reveal"><h4><span class="es">Hardware & señales</span><span class="en">Hardware & signals</span></h4><ul><li>ESP32</li><li>Arduino</li><li>MATLAB</li><li>Simulink</li><li>ThingSpeak</li><li>I2C · ADC</li></ul></div>
+    <div class="cluster reveal"><h4>Games & 3D</h4><ul><li>Unreal Engine</li><li>Blueprints</li><li>Unity</li><li>C# · C++</li><li>Blender</li></ul></div>
+    <div class="cluster reveal"><h4><span class="es">Contenido</span><span class="en">Content</span></h4><ul><li>DaVinci Resolve</li><li>CapCut</li><li>TikTok</li><li>YouTube</li></ul></div>
+    <div class="cluster reveal"><h4><span class="es">Idiomas</span><span class="en">Languages</span></h4><ul><li><span class="es">Español — nativo</span><span class="en">Spanish — native</span></li><li><span class="es">Inglés — C1 (Kaplan)</span><span class="en">English — C1 (Kaplan)</span></li></ul></div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section class="edu section" id="edu">
+  <p class="eyebrow">05 — <span class="es">Formación</span><span class="en">Education</span></p>
+  <div class="edu__list">
+    <div class="edu__row reveal">
+      <span class="edu__year"><span class="es">En curso</span><span class="en">Ongoing</span></span>
+      <h3><span class="es">Ingeniería Electrónica</span><span class="en">Electronic Engineering</span></h3>
+      <p>Universidad Santo Tomás · Tunja, Colombia</p>
+    </div>
+    <div class="edu__row reveal">
+      <span class="edu__year">2017 — 2020</span>
+      <h3>BS Game Design</h3>
+      <p>Full Sail University · Orlando, FL</p>
+    </div>
+    <div class="edu__row reveal">
+      <span class="edu__year">2018 — 2019</span>
+      <h3><span class="es">Certificaciones</span><span class="en">Certifications</span></h3>
+      <p>C# Fundamentals · Unreal & C++ · JavaScript Programming Masterclass</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact section" id="contact">
+  <p class="eyebrow">06 — <span class="es">Contacto</span><span class="en">Contact</span></p>
+  <a href="mailto:sebasaraque20@gmail.com" class="contact__big" id="contactBig">
+    <span class="es">HAGAMOS<br/>ALGO <em>IRREAL</em></span><span class="en">LET'S BUILD<br/>SOMETHING <em>UNREAL</em></span>
+  </a>
+  <div class="contact__row">
+    <a href="mailto:sebasaraque20@gmail.com" class="contact__item"><small>Email</small>sebasaraque20@gmail.com</a>
+    <a href="https://wa.me/573183696873" target="_blank" rel="noopener" class="contact__item"><small>WhatsApp</small>+57 318 369 6873</a>
+    <a href="https://www.linkedin.com/in/joan-sebastian-araque-prieto-a54ba716b/" target="_blank" rel="noopener" class="contact__item"><small>LinkedIn</small>Sebastián Araque Prieto</a>
+    <div class="contact__item"><small><span class="es">Base</span><span class="en">Based in</span></small>Tunja, Boyacá — CO</div>
+  </div>
+  <footer class="foot">
+    <span>© <span id="year">2026</span> Sebastián Araque Prieto</span>
+    <span><span class="es">Diseñado en un sueño lúcido</span><span class="en">Designed in a lucid dream</span> ✦</span>
+  </footer>
+</section>
+
+</main>
+
+<!-- ============ PRINTABLE CV (only visible when printing) ============ -->
+<section class="print-cv" aria-hidden="true">
+  <header>
+    <h1>Sebastián Araque Prieto</h1>
+    <p><span class="es">Arquitecto de Software · Founder de Pitly · Estudiante de Ingeniería Electrónica · Game Designer</span><span class="en">Software Architect · Founder of Pitly · Electronic Engineering Student · Game Designer</span></p>
+    <p>sebasaraque20@gmail.com · +57 318 369 6873 · Tunja, Boyacá, Colombia · linkedin.com/in/joan-sebastian-araque-prieto-a54ba716b</p>
+  </header>
+  <h2><span class="es">Perfil</span><span class="en">Profile</span></h2>
+  <p><span class="es">Arquitecto de software freelance y full-stack con experiencia en una plataforma de boletería en producción (Angular, Spring Boot, MongoDB, AWS). Founder de Pitly, SaaS bilingüe para talleres automotrices. Estudiante de Ingeniería Electrónica con proyectos en ESP32, IoT y procesamiento digital de señales. BS en Game Design.</span><span class="en">Freelance software architect and full-stack engineer with experience on a production ticketing platform (Angular, Spring Boot, MongoDB, AWS). Founder of Pitly, a bilingual SaaS for auto shops. Electronic Engineering student with ESP32, IoT and DSP projects. BS in Game Design.</span></p>
+  <h2><span class="es">Experiencia</span><span class="en">Experience</span></h2>
+  <div class="pj"><b>Pitly — Founder & Product Engineer</b><i>2026 — <span class="es">Hoy</span><span class="en">Now</span></i><p><span class="es">SaaS para talleres mecánicos, de detailing, PPF y polarizado en EE. UU. y Colombia; bilingüe EN/ES, beta abierta.</span><span class="en">SaaS for mechanic, detailing, PPF and tint shops in the US and Colombia; bilingual EN/ES, open beta.</span></p></div>
+  <div class="pj"><b><span class="es">Arquitecto de Software Freelance</span><span class="en">Freelance Software Architect</span></b><i><span class="es">Hoy</span><span class="en">Now</span></i><p><span class="es">Arquitectura, desarrollo y despliegue de proyectos a la medida; lanzando estudio de desarrollo web propio.</span><span class="en">Architecture, development and deployment of custom projects; launching own web studio.</span></p></div>
+  <div class="pj"><b>BlastTickets — <span class="es">Ingeniero de software (contratista)</span><span class="en">Software engineer (contractor)</span></b><i><span class="es">Hoy</span><span class="en">Now</span></i><p><span class="es">Plataforma de boletería usada por varias empresas del sector. Angular + Spring Boot + MongoDB en AWS (Elastic Beanstalk, Amplify, Route 53, ALB/ACM). Mapas de asientos SVG con concurrencia, pagos Bold y Wompi, operación de eventos en vivo, ingeniería de datos y optimización de costos.</span><span class="en">Ticketing platform used by several industry companies. Angular + Spring Boot + MongoDB on AWS (Elastic Beanstalk, Amplify, Route 53, ALB/ACM). SVG seat maps with concurrency, Bold and Wompi payments, live-event ops, data engineering and cost optimization.</span></p></div>
+  <div class="pj"><b>P1 Games — Game Designer & Programmer</b><i>2024</i><p>Scavenger Shores: Harvest of Hope — Unreal Engine, Blueprints, Niagara, Behavior Trees, level design, UI/UX.</p></div>
+  <div class="pj"><b>Salve Regina — Tech Lead</b><i>2019 — 2022</i><p>Offilawyer (Vue/Nuxt, Firebase): <span class="es">interfaces, calendario, carga de archivos, ambientes.</span><span class="en">interfaces, calendar, file uploader, environments.</span></p></div>
+  <div class="pj"><b>Freelance — Offilawyer · AraquePrieto Abogados</b><i>2019 · 2021</i></div>
+  <h2><span class="es">Formación</span><span class="en">Education</span></h2>
+  <div class="pj"><b><span class="es">Ingeniería Electrónica — Universidad Santo Tomás, Tunja</span><span class="en">Electronic Engineering — Universidad Santo Tomás, Tunja</span></b><i><span class="es">En curso</span><span class="en">Ongoing</span></i></div>
+  <div class="pj"><b>BS Game Design — Full Sail University, Orlando FL</b><i>2017 — 2020</i></div>
+  <h2>Skills</h2>
+  <p>Angular · TypeScript · Vue/Nuxt · Java Spring Boot · FastAPI · Python · Node.js · MongoDB · Firebase · AWS (Elastic Beanstalk, Amplify, Route 53, EC2, ALB/ACM) · Bold · Wompi · App Store Connect · Google Play · ESP32 · Arduino · MATLAB · Simulink · Unreal Engine · Unity · C# · C++ · Blender · DaVinci Resolve</p>
+  <h2><span class="es">Idiomas</span><span class="en">Languages</span></h2>
+  <p><span class="es">Español (nativo) · Inglés C1 (Kaplan International)</span><span class="en">Spanish (native) · English C1 (Kaplan International)</span></p>
+</section>
+
+<script src="assets/js/surreal.js"></script>
+</body>
 </html>
